@@ -1,0 +1,85 @@
+[gd_scene load_steps=2 format=3 uid="uid://cecsobun5pbye"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_74gs2"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="Help" type="BoxContainer"]
+offset_right = 239.0
+offset_bottom = 186.0
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 2
+theme_override_constants/h_separation = 10
+columns = 2
+
+[node name="Label5" type="Label" parent="GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_74gs2")
+text = "投币:"
+
+[node name="Label6" type="Label" parent="GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_74gs2")
+text = "P"
+
+[node name="Label7" type="Label" parent="GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_74gs2")
+text = "开始/继续游戏:"
+
+[node name="Label8" type="Label" parent="GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_74gs2")
+text = "Enter"
+
+[node name="Label" type="Label" parent="GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_74gs2")
+text = "移动:"
+
+[node name="Label2" type="Label" parent="GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_74gs2")
+text = "WASD"
+
+[node name="Label3" type="Label" parent="GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_74gs2")
+text = "射击:"
+
+[node name="Label4" type="Label" parent="GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_74gs2")
+text = "J"
+
+[node name="Label9" type="Label" parent="GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_74gs2")
+text = "调整僚机位置:"
+
+[node name="Label10" type="Label" parent="GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_74gs2")
+text = "K"
+
+[node name="Label11" type="Label" parent="GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_74gs2")
+text = "暂停/退出:"
+
+[node name="Label12" type="Label" parent="GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_74gs2")
+text = "ESC"

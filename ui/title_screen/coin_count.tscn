@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://ronbb8vaaf5w"]
+
+[ext_resource type="Script" path="res://ui/title_screen/CoinCount.cs" id="1_sxkfv"]
+
+[node name="CoinCount" type="BoxContainer" node_paths=PackedStringArray("CountLabel")]
+custom_minimum_size = Vector2(200, 0)
+offset_right = 131.0
+offset_bottom = 45.0
+script = ExtResource("1_sxkfv")
+CountLabel = NodePath("Label")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "投币数: 0"
