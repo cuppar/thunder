@@ -6,6 +6,14 @@ namespace Thunder.UI;
 
 public partial class TitleScreen : Control
 {
+    #region Child
+
+    [ExportGroup("ChildDontChange")]
+    [Export]
+    public CoinCount CoinCount { get; set; } = null!;
+
+    #endregion
+
     public override void _Ready()
     {
         base._Ready();
@@ -25,6 +33,7 @@ public partial class TitleScreen : Control
         }
 
         if (@event.IsActionPressed("coin"))
+            // todo 添加投币音效
             CoinCount.Count++;
     }
 
@@ -37,12 +46,4 @@ public partial class TitleScreen : Control
     {
         AutoloadManager.SceneTranslation.ChangeSceneToFileAsync(ScenePaths.TestWorld);
     }
-
-    #region Child
-
-    [ExportGroup("ChildDontChange")]
-    [Export]
-    public CoinCount CoinCount { get; set; } = null!;
-
-    #endregion
 }

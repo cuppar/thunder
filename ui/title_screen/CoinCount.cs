@@ -5,6 +5,19 @@ namespace Thunder;
 
 public partial class CoinCount : BoxContainer
 {
+    private CoinCount()
+    {
+        SetCount(0);
+    }
+
+    #region Child
+
+    [ExportGroup("ChildDontChange")]
+    [Export]
+    public Label CountLabel { get; set; } = null!;
+
+    #endregion
+
     #region Count
 
     private int _count;
@@ -25,19 +38,6 @@ public partial class CoinCount : BoxContainer
         _count = value;
         CountLabel.Text = $"投币数: {Count}";
     }
-
-    #endregion
-
-    private CoinCount()
-    {
-        SetCount(0);
-    }
-
-    #region Child
-
-    [ExportGroup("ChildDontChange")]
-    [Export]
-    public Label CountLabel { get; set; } = null!;
 
     #endregion
 }
