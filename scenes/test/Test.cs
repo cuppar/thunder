@@ -1,5 +1,4 @@
 using Godot;
-
 #if IMGUI
 using ImGuiGodot;
 using ImGuiNET;
