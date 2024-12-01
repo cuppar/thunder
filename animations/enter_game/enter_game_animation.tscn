@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4j4pq3iyr85c"]
+
+[ext_resource type="Script" path="res://animations/enter_game/EnterGameAnimation.cs" id="1_025ds"]
+[ext_resource type="PackedScene" uid="uid://bj1xv4t6027lc" path="res://animations/enter_game/air_plane.tscn" id="1_bjujm"]
+
+[node name="EnterGameAnimation" type="Node2D" node_paths=PackedStringArray("AirPlane")]
+script = ExtResource("1_025ds")
+AirPlane = NodePath("AirPlane")
+
+[node name="AirPlane" parent="." instance=ExtResource("1_bjujm")]
+position = Vector2(555, 241)
+scale = Vector2(4, 4)
