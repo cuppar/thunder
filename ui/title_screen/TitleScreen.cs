@@ -44,6 +44,6 @@ public partial class TitleScreen : Control
 
     private void StartGame()
     {
-        AutoloadManager.SceneTranslation.ChangeSceneToFileAsync(ScenePaths.TestWorld);
+        AutoloadManager.SceneTranslation.ChangeSceneToFileWithPause(ScenePaths.Animations.EnterGame);
     }
 }

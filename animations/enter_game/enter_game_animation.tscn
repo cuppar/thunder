@@ -1,12 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://b4j4pq3iyr85c"]
+[gd_scene load_steps=4 format=3 uid="uid://b4j4pq3iyr85c"]
 
 [ext_resource type="Script" path="res://animations/enter_game/EnterGameAnimation.cs" id="1_025ds"]
 [ext_resource type="PackedScene" uid="uid://bj1xv4t6027lc" path="res://animations/enter_game/air_plane.tscn" id="1_bjujm"]
+[ext_resource type="PackedScene" uid="uid://dfehviar0ije5" path="res://animations/enter_game/bg.tscn" id="2_eddin"]
 
-[node name="EnterGameAnimation" type="Node2D" node_paths=PackedStringArray("AirPlane")]
+[node name="EnterGameAnimation" type="Node2D" node_paths=PackedStringArray("AirPlane", "Bg", "Mask")]
 script = ExtResource("1_025ds")
 AirPlane = NodePath("AirPlane")
+Bg = NodePath("BG")
+Mask = NodePath("Mask")
+
+[node name="BG" parent="." instance=ExtResource("2_eddin")]
 
 [node name="AirPlane" parent="." instance=ExtResource("1_bjujm")]
-position = Vector2(555, 241)
+position = Vector2(316, 324)
 scale = Vector2(4, 4)
+
+[node name="Mask" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(1152, 648)
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 0)
+metadata/_edit_lock_ = true
