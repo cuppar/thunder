@@ -1,6 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://c6n0s8dw55ph"]
+[gd_scene load_steps=3 format=3 uid="uid://c6n0s8dw55ph"]
 
 [ext_resource type="Script" path="res://scenes/player/Player.cs" id="1_xqtwr"]
+[ext_resource type="Texture2D" uid="uid://mt4sexwfqwgh" path="res://scenes/player/player_test.png" id="2_ldweb"]
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("BodySprite", "BodyTurnDurationTimer")]
 script = ExtResource("1_xqtwr")
+BodySprite = NodePath("Griphics/Body")
+BodyTurnDurationTimer = NodePath("Griphics/Body/Timer")
+BodyTurnDuration = 0.2
+
+[node name="Griphics" type="Node2D" parent="."]
+
+[node name="Body" type="Sprite2D" parent="Griphics"]
+texture = ExtResource("2_ldweb")
+hframes = 5
+
+[node name="Timer" type="Timer" parent="Griphics/Body"]
