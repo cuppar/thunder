@@ -97,7 +97,7 @@ public partial class Player : CharacterBody2D, IStateMachine<Player.State>
         return direction;
     }
 
-    private void TickMove(double delta)
+    private void TickMove(double _)
     {
         var vDirection = Input.GetAxis("move_up", "move_down");
 
