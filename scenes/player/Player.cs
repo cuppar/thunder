@@ -7,6 +7,16 @@ namespace Thunder;
 
 public partial class Player : CharacterBody2D, IStateMachine<Player.State>
 {
+    private Player()
+    {
+        _stateMachine = StateMachine<State>.Create(this);
+    }
+
+
+    #region 状态机
+
+    private StateMachine<State> _stateMachine;
+
     #region State enum
 
     public enum State
@@ -16,15 +26,6 @@ public partial class Player : CharacterBody2D, IStateMachine<Player.State>
     }
 
     #endregion
-
-    private StateMachine<State> _stateMachine;
-
-    private Player()
-    {
-        _stateMachine = StateMachine<State>.Create(this);
-    }
-
-    [Export] public float Speed { get; set; } = 300;
 
     #region IStateMachine<State> Members
 
@@ -84,12 +85,22 @@ public partial class Player : CharacterBody2D, IStateMachine<Player.State>
 
     #endregion
 
-    private void ResetBodyTurnTimer()
-    {
-        BodyTurnDurationTimer.SetWaitTime(BodyTurnDuration);
-        BodyTurnDurationTimer.OneShot = true;
-        BodyTurnDurationTimer.Start();
-    }
+    #endregion
+
+    #region Child
+
+    [ExportGroup("ChildDontChange")]
+    [Export]
+    public Sprite2D BodySprite { get; set; } = null!;
+
+    [Export] public Timer BodyTurnDurationTimer { get; set; } = null!;
+    [Export] public double BodyTurnDuration { get; set; } = 0.8;
+
+    #endregion
+
+    #region 移动
+
+    [Export] public float Speed { get; set; } = 300;
 
     private static Vector2 GetMoveDirection()
     {
@@ -129,6 +140,15 @@ public partial class Player : CharacterBody2D, IStateMachine<Player.State>
         MoveAndSlide();
     }
 
+    #region 飞机移动时转体
+
+    private void ResetBodyTurnTimer()
+    {
+        BodyTurnDurationTimer.SetWaitTime(BodyTurnDuration);
+        BodyTurnDurationTimer.OneShot = true;
+        BodyTurnDurationTimer.Start();
+    }
+
     #region Nested type: BodyRotation
 
     private enum BodyRotation
@@ -139,17 +159,6 @@ public partial class Player : CharacterBody2D, IStateMachine<Player.State>
         Down1,
         Down2
     }
-
-    #endregion
-
-    #region Child
-
-    [ExportGroup("ChildDontChange")]
-    [Export]
-    public Sprite2D BodySprite { get; set; } = null!;
-
-    [Export] public Timer BodyTurnDurationTimer { get; set; } = null!;
-    [Export] public double BodyTurnDuration { get; set; } = 0.8;
 
     #endregion
 
@@ -172,6 +181,10 @@ public partial class Player : CharacterBody2D, IStateMachine<Player.State>
         BodySprite.Frame = (int)_currentBodyRotation;
         ResetBodyTurnTimer();
     }
+
+    #endregion
+
+    #endregion
 
     #endregion
 }
