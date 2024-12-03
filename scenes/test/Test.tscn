@@ -7,6 +7,7 @@
 script = ExtResource("1_3nfey")
 
 [node name="Label" type="Label" parent="."]
+visible = false
 offset_left = 228.0
 offset_top = 235.0
 offset_right = 890.0
@@ -17,3 +18,5 @@ text = "Test World"
 
 [node name="Player" parent="." instance=ExtResource("2_p3pih")]
 position = Vector2(69, 279)
+
+[node name="ProjectileContainer" type="Node2D" parent="."]

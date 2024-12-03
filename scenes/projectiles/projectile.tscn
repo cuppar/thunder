@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://udtyaw8v6tun"]
+
+[ext_resource type="Script" path="res://scenes/projectiles/Projectile.cs" id="1_nud0g"]
+[ext_resource type="Texture2D" uid="uid://2asupu8v2u1d" path="res://scenes/projectiles/projectile.png" id="2_ydo8l"]
+
+[node name="Projectile" type="Area2D" node_paths=PackedStringArray("VisibleOnScreenNotifier")]
+script = ExtResource("1_nud0g")
+VisibleOnScreenNotifier = NodePath("VisibleOnScreenNotifier2D")
+
+[node name="Graphics" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Graphics"]
+texture = ExtResource("2_ydo8l")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0, -1.78814e-07)
+scale = Vector2(1, 0.4)

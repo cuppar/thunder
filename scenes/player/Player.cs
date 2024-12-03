@@ -7,10 +7,31 @@ namespace Thunder;
 
 public partial class Player : CharacterBody2D, IStateMachine<Player.State>
 {
+    #region 射击
+
+    public void Shoot()
+    {
+        var projectile = Projectile.Create(ShootMarker.GlobalPosition);
+        var container = GetParent().GetNodeOrNull<Node2D>("ProjectileContainer") ?? GetParent();
+        container.AddChild(projectile);
+    }
+
+    #endregion
+
+    #region 生命周期
+
     private Player()
     {
         _stateMachine = StateMachine<State>.Create(this);
     }
+
+    public override void _UnhandledInput(InputEvent @event)
+    {
+        base._UnhandledInput(@event);
+        if (@event.IsActionPressed("primary")) Shoot();
+    }
+
+    #endregion
 
 
     #region 状态机
@@ -94,13 +115,16 @@ public partial class Player : CharacterBody2D, IStateMachine<Player.State>
     public Sprite2D BodySprite { get; set; } = null!;
 
     [Export] public Timer BodyTurnDurationTimer { get; set; } = null!;
+
     [Export] public double BodyTurnDuration { get; set; } = 0.8;
+
+    [ExportSubgroup("Markers")] [Export] public Marker2D ShootMarker { get; set; } = null!;
 
     #endregion
 
     #region 移动
 
-    [Export] public float Speed { get; set; } = 300;
+    [ExportGroup("")] [Export] public float Speed { get; set; } = 300;
 
     private static Vector2 GetMoveDirection()
     {

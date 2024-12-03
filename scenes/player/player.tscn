@@ -124,11 +124,12 @@ animations = [{
 "speed": 20.0
 }]
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("BodySprite", "BodyTurnDurationTimer")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("BodySprite", "BodyTurnDurationTimer", "ShootMarker")]
 script = ExtResource("1_xqtwr")
 BodySprite = NodePath("Griphics/Body")
 BodyTurnDurationTimer = NodePath("Griphics/Body/Timer")
 BodyTurnDuration = 0.2
+ShootMarker = NodePath("Markers/ShootMarker2D")
 
 [node name="Griphics" type="Node2D" parent="."]
 
@@ -136,10 +137,15 @@ BodyTurnDuration = 0.2
 position = Vector2(-51, 2)
 sprite_frames = SubResource("SpriteFrames_fjb85")
 autoplay = "default"
-frame_progress = 0.385875
+frame_progress = 0.537054
 
 [node name="Body" type="Sprite2D" parent="Griphics"]
 texture = ExtResource("2_ldweb")
 hframes = 5
 
 [node name="Timer" type="Timer" parent="Griphics/Body"]
+
+[node name="Markers" type="Node2D" parent="."]
+
+[node name="ShootMarker2D" type="Marker2D" parent="Markers"]
+position = Vector2(52, 8)
