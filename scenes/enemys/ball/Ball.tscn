@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://c5k76d7xspakk"]
+
+[ext_resource type="Script" path="res://scenes/enemys/ball/Ball.cs" id="1_5tukd"]
+[ext_resource type="Texture2D" uid="uid://dmhvan2h2dvst" path="res://scenes/enemys/ball/10.png" id="2_0hour"]
+[ext_resource type="Script" path="res://classes/HurtBox.cs" id="3_eknyo"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b57ic"]
+radius = 77.1038
+
+[node name="Ball" type="Node2D" node_paths=PackedStringArray("HurtBox")]
+script = ExtResource("1_5tukd")
+HurtBox = NodePath("HurtBox")
+
+[node name="Graphics" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Graphics"]
+texture = ExtResource("2_0hour")
+
+[node name="HurtBox" type="Area2D" parent="."]
+script = ExtResource("3_eknyo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("CircleShape2D_b57ic")

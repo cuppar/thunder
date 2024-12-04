@@ -1,22 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://c67vldcuj611"]
+[gd_scene load_steps=4 format=3 uid="uid://c67vldcuj611"]
 
 [ext_resource type="Script" path="res://scenes/test/Test.cs" id="1_3nfey"]
 [ext_resource type="PackedScene" uid="uid://c6n0s8dw55ph" path="res://scenes/player/player.tscn" id="2_p3pih"]
+[ext_resource type="PackedScene" uid="uid://c5k76d7xspakk" path="res://scenes/enemys/ball/Ball.tscn" id="3_24hrl"]
 
 [node name="Test" type="Node2D"]
 script = ExtResource("1_3nfey")
 
-[node name="Label" type="Label" parent="."]
-visible = false
-offset_left = 228.0
-offset_top = 235.0
-offset_right = 890.0
-offset_bottom = 410.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 128
-text = "Test World"
+[node name="Debug" type="Node2D" parent="."]
+
+[node name="Ball" parent="Debug" instance=ExtResource("3_24hrl")]
+position = Vector2(1311, 174)
+
+[node name="Ball2" parent="Debug" instance=ExtResource("3_24hrl")]
+position = Vector2(1989, 293)
+
+[node name="Ball3" parent="Debug" instance=ExtResource("3_24hrl")]
+position = Vector2(1608, 480)
+
+[node name="ProjectileContainer" type="Node2D" parent="."]
 
 [node name="Player" parent="." instance=ExtResource("2_p3pih")]
 position = Vector2(69, 279)
-
-[node name="ProjectileContainer" type="Node2D" parent="."]

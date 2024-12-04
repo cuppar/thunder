@@ -1,4 +1,5 @@
 using Godot;
+using Thunder.Classes;
 using Thunder.Constants;
 
 namespace Thunder;
@@ -9,7 +10,15 @@ public partial class Projectile : Area2D
     {
         base._Ready();
         VisibleOnScreenNotifier.ScreenExited += QueueFree;
+        HitBox.Hit += OnHit;
     }
+
+    private void OnHit(HurtBox hurtbox)
+    {
+        QueueFree();
+    }
+
+    [Export] public float Damage { get; set; } = 1;
 
     [Export] public float Speed { get; set; } = 500;
 
@@ -31,6 +40,8 @@ public partial class Projectile : Area2D
     [ExportGroup("ChildDontChange")]
     [Export]
     public VisibleOnScreenNotifier2D VisibleOnScreenNotifier { get; set; } = null!;
+
+    [Export] public HitBox HitBox { get; set; } = null!;
 
     #endregion
 }
