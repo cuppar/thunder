@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Godot;
 using Thunder.Autoloads;
 using Thunder.Constants;
@@ -11,16 +12,24 @@ public partial class EnterGameAnimation : Node2D
     {
         base._Ready();
         AirPlane.StartMove += () => { Bg.StartMove(); };
-        AirPlane.OutOfScreen += async () =>
-        {
-            var tween = CreateTween();
-            tween.TweenProperty(Mask, "color:a", 1, 2);
-            await ToSignal(tween, Tween.SignalName.Finished);
-            AutoloadManager.SceneTranslation.ChangeSceneToFileAsync(ScenePaths.TestWorld);
-        };
+        AirPlane.OutOfScreen += async () => { await EnterGame(); };
 
         await this.DelayAsync(0.5f);
         AirPlane.TakeOff();
+    }
+
+    private async Task EnterGame()
+    {
+        var tween = CreateTween();
+        tween.TweenProperty(Mask, "color:a", 1, 2);
+        await ToSignal(tween, Tween.SignalName.Finished);
+        AutoloadManager.SceneTranslation.ChangeSceneToFileAsync(ScenePaths.TestWorld);
+    }
+
+    public override async void _UnhandledInput(InputEvent @event)
+    {
+        base._UnhandledInput(@event);
+        if (@event.IsActionPressed("primary")) await EnterGame();
     }
 
     #region Child
