@@ -8,6 +8,14 @@ public partial class Ball : Node2D
 {
     [Export] public float Speed { get; set; } = -100;
 
+    #region Child
+
+    [ExportGroup("ChildDontChange")]
+    [Export]
+    public HurtBox HurtBox { get; set; } = null!;
+
+    #endregion
+
     #region Health
 
     private float _health = 3;
@@ -53,14 +61,6 @@ public partial class Ball : Node2D
         base._Process(delta);
         Position = Position with { X = Position.X + Speed * (float)delta };
     }
-
-    #endregion
-
-    #region Child
-
-    [ExportGroup("ChildDontChange")]
-    [Export]
-    public HurtBox HurtBox { get; set; } = null!;
 
     #endregion
 }

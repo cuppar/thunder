@@ -18,7 +18,7 @@ public partial class Player : CharacterBody2D, IStateMachine<Player.State>
                 startPosition.X + 500 * elaspedTime + 100 * Mathf.Cos(20 * elaspedTime),
                 startPosition.Y - 100 * Mathf.Sin(20 * elaspedTime)
             ),
-            (startRotation, elaspedTime) => startRotation);
+            (startRotation, _) => startRotation);
 
         var container = GetParent().GetNodeOrNull<Node2D>("ProjectileContainer") ?? GetParent();
         container.AddChild(projectile);
