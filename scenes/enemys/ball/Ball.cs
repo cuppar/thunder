@@ -63,9 +63,20 @@ public partial class Ball : Node2D
     {
         IsAlive = false;
         AnimationPlayer.Play("die");
+        CleanUp();
     }
 
-    public void Destroy()
+    private async void CleanUp()
+    {
+        var animationSignal = ToSignal(AnimationPlayer, AnimationMixer.SignalName.AnimationFinished);
+
+        // TODO: 添加音效，并等待音效播放完成后再销毁
+        // var sfxSignal = ...
+        await SignalExtensions.WhenAll(animationSignal);
+        Destroy();
+    }
+
+    private void Destroy()
     {
         QueueFree();
     }
