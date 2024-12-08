@@ -9,17 +9,6 @@ namespace Thunder;
 
 public partial class Player : CharacterBody2D, IStateMachine<Player.State>
 {
-    #region debug
-
-    public Ball Target = null!;
-
-    public void SetTarget(Ball ball)
-    {
-        Target = ball;
-    }
-
-    #endregion
-
     #region 射击
 
     public void Shoot()
@@ -37,6 +26,17 @@ public partial class Player : CharacterBody2D, IStateMachine<Player.State>
 
         var container = GetParent().GetNodeOrNull<Node2D>("ProjectileContainer") ?? GetParent();
         container.AddChild(projectile);
+    }
+
+    #endregion
+
+    #region debug
+
+    public Ball Target = null!;
+
+    public void SetTarget(Ball ball)
+    {
+        Target = ball;
     }
 
     #endregion
