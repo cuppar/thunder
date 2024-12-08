@@ -16,27 +16,14 @@ public partial class Player : CharacterBody2D, IStateMachine<Player.State>
         var projectile = Projectile.Create(
             ShootMarker.GlobalPosition,
             0,
-            (_, currentPosition, _, delta, _) =>
-            {
-                const int speed = 300;
-                var direction = currentPosition.DirectionTo(Target.Position);
-                return currentPosition + speed * direction * (float)delta;
-            },
-            (_, _, _, _, projectile) => projectile.Position.DirectionTo(Target.Position).Angle());
+            (startPosition, _, elaspedTime, _, _) => new Vector2(
+                startPosition.X + 400 * elaspedTime,
+                startPosition.Y
+            ),
+            (startRotation, _, _, _, _) => startRotation);
 
         var container = GetParent().GetNodeOrNull<Node2D>("ProjectileContainer") ?? GetParent();
         container.AddChild(projectile);
-    }
-
-    #endregion
-
-    #region debug
-
-    public Ball Target = null!;
-
-    public void SetTarget(Ball ball)
-    {
-        Target = ball;
     }
 
     #endregion
