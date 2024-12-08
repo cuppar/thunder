@@ -1,4 +1,5 @@
 using Godot;
+using Thunder.Enemys;
 #if IMGUI
 using ImGuiGodot;
 
@@ -16,6 +17,18 @@ public partial class Test : Node2D
         ImGuiGD.Connect(OnImGuiLayout);
 #endif
     }
+
+    #region debug
+
+    public override void _PhysicsProcess(double delta)
+    {
+        base._PhysicsProcess(delta);
+        var target = GetNode<Ball>("Debug/Ball");
+        var player = GetNode<Player>("Player");
+        player.SetTarget(target);
+    }
+
+    #endregion
 
 #if IMGUI
     private void OnImGuiLayout()

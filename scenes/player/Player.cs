@@ -1,12 +1,25 @@
 using System;
 using Godot;
 using Thunder.Classes;
+using Thunder.Enemys;
 using Thunder.Globals.Extensions;
+using Vector2 = Godot.Vector2;
 
 namespace Thunder;
 
 public partial class Player : CharacterBody2D, IStateMachine<Player.State>
 {
+    #region debug
+
+    public Ball Target = null!;
+
+    public void SetTarget(Ball ball)
+    {
+        Target = ball;
+    }
+
+    #endregion
+
     #region 射击
 
     public void Shoot()
@@ -14,11 +27,13 @@ public partial class Player : CharacterBody2D, IStateMachine<Player.State>
         var projectile = Projectile.Create(
             ShootMarker.GlobalPosition,
             0,
-            (startPosition, elaspedTime) => new Vector2(
-                startPosition.X + 500 * elaspedTime + 100 * Mathf.Cos(20 * elaspedTime),
-                startPosition.Y - 100 * Mathf.Sin(20 * elaspedTime)
-            ),
-            (startRotation, _) => startRotation);
+            (_, currentPosition, _, delta, _) =>
+            {
+                const int speed = 300;
+                var direction = currentPosition.DirectionTo(Target.Position);
+                return currentPosition + speed * direction * (float)delta;
+            },
+            (_, _, _, _, projectile) => projectile.Position.DirectionTo(Target.Position).Angle());
 
         var container = GetParent().GetNodeOrNull<Node2D>("ProjectileContainer") ?? GetParent();
         container.AddChild(projectile);

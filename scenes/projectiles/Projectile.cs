@@ -36,9 +36,11 @@ public partial class Projectile : Area2D
 
     [Export] public required float StartRotation { get; set; }
 
-    public delegate Vector2 PositionGeneratorDelegate(Vector2 startPosition, float elaspedTime);
+    public delegate Vector2 PositionGeneratorDelegate(Vector2 startPosition, Vector2 currentPosition, float elaspedTime,
+        double delta, Projectile projectile);
 
-    public delegate float RotationGeneratorDelegate(float startRotation, float elaspedTime);
+    public delegate float RotationGeneratorDelegate(float startRotation, float currentRotation, float elaspedTime,
+        double delta, Projectile projectile);
 
     public required PositionGeneratorDelegate PositionGenerator { get; set; }
     public required RotationGeneratorDelegate RotationGenerator { get; set; }
@@ -63,8 +65,8 @@ public partial class Projectile : Area2D
         base._PhysicsProcess(delta);
         ElaspedTime += (float)delta;
 
-        Position = PositionGenerator(StartPosition, ElaspedTime);
-        Rotation = RotationGenerator(StartRotation, ElaspedTime);
+        Position = PositionGenerator(StartPosition, Position, ElaspedTime, delta, this);
+        Rotation = RotationGenerator(StartRotation, Rotation, ElaspedTime, delta, this);
     }
 
     #endregion
