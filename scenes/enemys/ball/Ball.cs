@@ -14,6 +14,30 @@ public partial class Ball : Node2D
     [Export]
     public HurtBox HurtBox { get; set; } = null!;
 
+    [Export] public AnimationPlayer AnimationPlayer { get; set; } = null!;
+
+    #endregion
+
+    #region 生命值和存活
+
+    #region IsAlive
+
+    private bool _isAlive;
+
+    [Export]
+    public bool IsAlive
+    {
+        get => _isAlive;
+        set => SetIsAlive(value);
+    }
+
+    private async void SetIsAlive(bool value)
+    {
+        await this.EnsureReadyAsync();
+        _isAlive = value;
+        HurtBox.SetDeferred(Area2D.PropertyName.Monitorable, IsAlive);
+    }
+
     #endregion
 
     #region Health
@@ -37,8 +61,16 @@ public partial class Ball : Node2D
 
     private void Die()
     {
+        IsAlive = false;
+        AnimationPlayer.Play("die");
+    }
+
+    public void Destroy()
+    {
         QueueFree();
     }
+
+    #endregion
 
     #endregion
 
@@ -47,6 +79,7 @@ public partial class Ball : Node2D
     public override void _Ready()
     {
         base._Ready();
+        IsAlive = true;
         HurtBox.Hurt += OnHurt;
     }
 
